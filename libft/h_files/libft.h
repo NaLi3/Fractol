@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 03:46:33 by ilevy             #+#    #+#             */
-/*   Updated: 2024/11/30 21:49:18 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/07 13:42:02 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ int		ft_lstsize(t_list *lst);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_iswhitespace(int c);
+
+//double	ft_atof(char *str, int i, int j);
 
 char	*ft_strnstr(const char *big, const char *little, unsigned int len);
 char	*ft_strchr(const char *s1, int character);

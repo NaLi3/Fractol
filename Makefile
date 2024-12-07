@@ -6,7 +6,7 @@
 #    By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/06 21:37:20 by ilevy             #+#    #+#              #
-#    Updated: 2024/12/06 22:13:06 by ilevy            ###   ########.fr        #
+#    Updated: 2024/12/07 16:12:28 by ilevy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME:= Fractol
 
 # Compilator
 
-CC:= gcc
+CC:= cc
 CFLAGS:= -Wall -Wextra -Werror
 
 # Main Directories
@@ -33,7 +33,7 @@ LIBLMX_LINUX_A:= libmlx_Linux.a# To add to the comp
 
 # Source_files relative to themselves.
 
-SRC_FILES:= ft_fractol.c ft_error_handling.c
+SRC_FILES:= ft_fractol.c ft_error_handling.c ft_mandelbrot.c ft_utils.c
 
 # Source_files and o_files relative to the makefile.
 
@@ -57,7 +57,7 @@ objdir_mk:
 $(NAME):	$(OBJ)
 	@make -C $(LIBFT)
 	@make all -C $(MLX)
-	$(CC) $(CFLAGS) $(OBJ) $(LIB) $(LIBMLX) $(LIBMLX_LINUX) -lX11 -lXext -o $@
+	$(CC) $(CFLAGS) $(OBJ) $(LIB) $(LIBMLX) $(LIBMLX_LINUX) -lX11 -lm -lXext -o $@
 	@echo "Compiled fractol!"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c | objdir_mk
