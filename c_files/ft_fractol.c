@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:03:33 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/07 19:15:27 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/07 19:43:29 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_opt_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	main(void)
+int	main(void/*int argc, char **argv*/)
 {
 	void	*mlx;
 	void	*mlx_win;
