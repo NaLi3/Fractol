@@ -6,15 +6,15 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:57:57 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/07 19:21:22 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/09 19:39:58 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_FRACTOL_H
 # define FT_FRACTOL_H
 
-# define WIDTH 1500
-# define HEIGHT 900
+# define WIDTH 1980
+# define HEIGHT 1080
 # define X_MAX 2
 # define X_MIN -2
 # define Y_MIN -1.2
@@ -27,33 +27,63 @@
 
 typedef struct s_data
 {
+	char	*name;
+	char	*data_addr;
+	void	*init;
+	void	*win;
 	void	*img;
-	char	*addr;
+	int		height;
+	int		width;
 	int		bpp;
 	int		size_line;
 	int		endian;
-}				t_data;
+}			t_data;
 
 typedef struct s_fractol
 {
 	double	real;
 	double	imag;
+	double	c_real;
+	double	c_imag;
 	int		x;
-	int		i;
 	int		y;
 	int		color;
-}	t_fractol;
+	int		i;
+	int		max_i;
+	double	max_x;
+	double	min_x;
+	double	max_y;
+	double	min_y;
+}			t_fractol;
 
 // ft_utils.c
-double		ft_atof(char *str, int i, int j);
+double		ft_atof(char *str, double intp, double floatp);
 void		*ft_create_img(void *mlx, int width, int height, int *img_data);
 
-t_fractol	*ft_initialize_f(double a, double b, int x, int y);
+// ft_utils.c
 
-int			ft_calculate_mandelbrot(double a, double b, int max_i);
-void		ft_draw_mandelbrot(void *mlx, void *win, int x, int y);
-int			ft_color_mngmnt(t_fractol *f, int max, u_int64_t a, u_int64_t b);
+double		ft_atof(char *str, double intp, double floatp);
+t_fractol	*ft_initialize_f(double a, double b, int max_i);
+t_data		*prout(char **argv);
+int			ft_color_mngmnt(t_fractol *f, u_int64_t clr_int, u_int64_t clr_ext);
 
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+// ft_mandelbrot.c
+int			ft_calculate_mandelbrot(t_fractol *fractol);
+void		ft_draw_mandelbrot(t_data *mlx, t_fractol *f);
+int			ft_color_mngmnt(t_fractol *f, u_int64_t a, u_int64_t b);
 
+// ft_julia.c
+int			ft_calculate_julia(t_fractol *fractol);
+void		ft_draw_julia(t_data *mlx, t_fractol *f);
+
+// ft_win_handling.c
+int			ft_close(int keycode, t_data *mlx);
+int			ft_close_2(t_data *mlx);
+
+// ft_error_handling.c
+int			ft_argument_handling(int argc, char **argv);
+
+// ft_arg_handling.c
+int			ft_choose_fractal(char *str);
+int			ft_resized(void);
 #endif

@@ -6,60 +6,104 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:19:27 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/07 19:14:12 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/09 19:41:17 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/h_files/ft_fractol.h"
-#include <math.h>
 
-double	ft_atof(char *str, int i, int j)
+double	ft_atof(char *str, double intp, double floatp)
 {
+	int		sign;
+	int		div;
 	int		flag;
-	double	val;
 
-	val = 0;
+	div = 1;
+	sign = 1;
 	flag = 0;
-	while (str[i])
+	if (*str == '-')
 	{
-		if (str[i] != '.')
-		{
-			val += (str[i] - '0') * 10;
-			if (flag)
-				j--;
-		}
-		if (str[i++] == '.')
-		{
-			if (flag)
-				return (0);
-			flag = 1;
-		}
+		++str;
+		sign = -1;
 	}
-	val = val * pow(10, j);
-	return (val);
+	else if (*str == '+')
+		str++;
+	while (*str)
+	{
+		if (ft_isdigit(*str))
+		{
+			if (flag)
+			{
+				floatp = floatp*10 +(*str - '0');
+				div *= 10;
+			}
+			else
+				intp = intp * 10 + (*str - '0');
+		}
+		else if (*str == '.')
+		{
+			if (flag)
+				break ;
+			else
+				flag = 1;
+		}
+		else
+			break;
+		str++;
+	}
+	return sign * (intp + floatp/div);
 }
 
-t_fractol	*ft_initialize_f(double a, double b, int x, int y)
+t_fractol	*ft_initialize_f(double a, double b, int max_i)
 {
 	t_fractol	*f;
 
 	f = (t_fractol *)malloc(1 * sizeof(t_fractol));
 	if (!f)
 		return (NULL);
-	(*f).real = a;
-	(*f).imag = b;
-	(*f).x = x;
-	(*f).y = y;
+	(*f).real = 0;
+	(*f).imag = 0;
+	(*f).c_real = a;
+	(*f).c_imag = b;
+	(*f).max_i = max_i;
+	(*f).x = 0;
+	(*f).y = 0;
+	(*f).i = 0;
 	(*f).color = 0;
+	(*f).max_x = 2;
+	(*f).max_y = 1.2;
+	(*f).min_x = -2;
+	(*f).min_y = -1.2;
 	return (f);
 }
 
-int	ft_decide_color(int i)
+t_data	*prout(char **argv)
 {
-	int	color;
+	t_data	*mlx;
 
-	color = 0;
-	if (i % 2)
-		return (0);
-	return (0);
+	mlx = (t_data*)malloc(1 * sizeof(t_data));
+	if (!mlx)
+		return (NULL);
+	mlx->init = 0;
+	mlx -> win = 0;
+	mlx->width = ft_atoi(argv[2]);
+	mlx->height = ft_atoi(argv[3]);
+	mlx->name = argv[1];
+	mlx->endian = 0;
+	mlx->bpp = 0;
+	mlx->size_line = 0;
+	return (mlx);
+}
+
+int	ft_color_mngmnt(t_fractol *f, u_int64_t clr_int, u_int64_t clr_ext)
+{
+	if (clr_int > 0xFFFFFF)
+		clr_int = 0xFFFFFF;
+	if (clr_ext > 0xFFFFFF)
+		clr_ext = 0xFFFFFF;
+	if (f->i == f -> max_i)
+		f->color = clr_int;
+	else
+		f->color = f->i * clr_ext;
+	return (f->color);
 }

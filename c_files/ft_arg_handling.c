@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error_handling.c                                :+:      :+:    :+:   */
+/*   ft_arg_handling.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 21:42:44 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/09 19:29:51 by ilevy            ###   ########.fr       */
+/*   Created: 2024/12/09 12:09:46 by ilevy             #+#    #+#             */
+/*   Updated: 2024/12/09 17:54:51 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/h_files/ft_fractol.h"
 
-int		ft_argument_handling(int argc, char **argv)
+int		ft_choose_fractal(char *str)
 {
-	if (argc != 7)
+	int			i;
+	const char	*s;
+
+	i = 0;
+	while (str[i])
 	{
-		ft_printf("Usage: [Name], [Width], [Height], [Real], [Imaginary] ");
-		ft_printf("[Precision].\n");
-		return (1);
+		str[i] = ft_tolower(str[i]);
+		i++;
 	}
-	if (!ft_choose_fractal(argv[1]))
-{
-		ft_printf("Incorrect name: Available fractals are\n");
-		ft_printf("Mandelbrot, Julia\n");
+	s = (const char *)str;
+	if (!strncmp(s, "mandelbrot", 9))
 		return (1);
-	}
+	if (!strncmp(s, "julia", 5))
+		return (2);
 	return (0);
 }

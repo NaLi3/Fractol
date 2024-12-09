@@ -6,7 +6,7 @@
 #    By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/06 21:37:20 by ilevy             #+#    #+#              #
-#    Updated: 2024/12/07 16:12:28 by ilevy            ###   ########.fr        #
+#    Updated: 2024/12/09 19:23:48 by ilevy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ LIBLMX_LINUX_A:= libmlx_Linux.a# To add to the comp
 
 # Source_files relative to themselves.
 
-SRC_FILES:= ft_fractol.c ft_error_handling.c ft_mandelbrot.c ft_utils.c
+SRC_FILES:= ft_fractol.c ft_error_handling.c ft_mandelbrot.c ft_julia.c \
+			ft_utils.c ft_arg_handling.c ft_win_handling.c
 
 # Source_files and o_files relative to the makefile.
 
