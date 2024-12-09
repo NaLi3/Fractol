@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:19:27 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/09 19:41:17 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/09 20:40:41 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_fractol	*ft_initialize_f(double a, double b, int max_i)
 	return (f);
 }
 
-t_data	*prout(char **argv)
+t_data	*ft_initialize_data(char **argv)
 {
 	t_data	*mlx;
 
@@ -92,6 +92,7 @@ t_data	*prout(char **argv)
 	mlx->endian = 0;
 	mlx->bpp = 0;
 	mlx->size_line = 0;
+	mlx->data_addr = NULL;
 	return (mlx);
 }
 

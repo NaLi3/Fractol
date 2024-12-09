@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 12:09:46 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/09 17:54:51 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/09 20:24:07 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int		ft_choose_fractal(char *str)
 		i++;
 	}
 	s = (const char *)str;
-	if (!strncmp(s, "mandelbrot", 9))
+	if (!strncmp(s, "mandelbrot", 10))
 		return (1);
-	if (!strncmp(s, "julia", 5))
+	if (!strncmp(s, "julia", 6))
 		return (2);
 	return (0);
 }
