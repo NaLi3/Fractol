@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:20:39 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/09 19:35:13 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/09 23:00:13 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_calculate_julia(t_fractol *f)
 		temp = (real * real - imag * imag) + f->c_real;
 		imag = (2 * real * imag) + f->c_imag;
 		real = temp;
-		f -> i++;
+		(f -> i)++;
 	}
 	return (f -> i);
 }

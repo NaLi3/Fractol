@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:14:14 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/09 17:59:11 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/09 22:59:11 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_calculate_mandelbrot(t_fractol *f)
 	f -> i = 0;
 	while ((real * real) + (imag * imag) <= 4 && f -> i < f -> max_i)
 	{
-		temp = (real * real - imag * imag) + f -> real;
+		temp = (real * real - imag * imag) + f->real;
 		imag = (2 * real * imag) + f -> imag;
 		real = temp;
 		(f -> i)++;

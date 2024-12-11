@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:19:27 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/09 19:41:17 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/10 22:01:50 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ double	ft_atof(char *str, double intp, double floatp)
 		{
 			if (flag)
 			{
-				floatp = floatp*10 +(*str - '0');
+				floatp = floatp * 10 +(*str - '0');
 				div *= 10;
 			}
 			else
@@ -77,7 +77,7 @@ t_fractol	*ft_initialize_f(double a, double b, int max_i)
 	return (f);
 }
 
-t_data	*prout(char **argv)
+t_data	*ft_initialize_data(char **argv)
 {
 	t_data	*mlx;
 
@@ -85,13 +85,15 @@ t_data	*prout(char **argv)
 	if (!mlx)
 		return (NULL);
 	mlx->init = 0;
-	mlx -> win = 0;
+	mlx->win = 0;
+	mlx->img = 0;
 	mlx->width = ft_atoi(argv[2]);
 	mlx->height = ft_atoi(argv[3]);
 	mlx->name = argv[1];
 	mlx->endian = 0;
 	mlx->bpp = 0;
 	mlx->size_line = 0;
+	mlx->data_addr = NULL;
 	return (mlx);
 }
 

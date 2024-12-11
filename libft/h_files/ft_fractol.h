@@ -6,19 +6,12 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:57:57 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/09 19:39:58 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/10 23:08:26 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_FRACTOL_H
 # define FT_FRACTOL_H
-
-# define WIDTH 1980
-# define HEIGHT 1080
-# define X_MAX 2
-# define X_MIN -2
-# define Y_MIN -1.2
-# define Y_MAX 1.2
 
 # include "libft.h"
 # include "../../mlx_linux/mlx.h"
@@ -64,7 +57,7 @@ void		*ft_create_img(void *mlx, int width, int height, int *img_data);
 
 double		ft_atof(char *str, double intp, double floatp);
 t_fractol	*ft_initialize_f(double a, double b, int max_i);
-t_data		*prout(char **argv);
+t_data		*ft_initialize_data(char **argv);
 int			ft_color_mngmnt(t_fractol *f, u_int64_t clr_int, u_int64_t clr_ext);
 
 // ft_mandelbrot.c
@@ -86,4 +79,7 @@ int			ft_argument_handling(int argc, char **argv);
 // ft_arg_handling.c
 int			ft_choose_fractal(char *str);
 int			ft_resized(void);
+
+int			ft_zooming(int keycode, t_data *mlx, t_fractol *f);
+
 #endif
