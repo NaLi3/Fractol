@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 18:45:20 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/12 20:48:55 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/12 23:01:37 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int		ft_key_handler(int keycode, t_fractol *f)
 		f->move_y -= 0.1 * f->zoom_y;
 	if (!ft_strncmp(f->name, "mandelbrot", 10))
 		ft_draw_mandelbrot(f);
-	else
+	else if (!ft_strncmp(f->name, "julia", 6))
 		ft_draw_julia(f);
+	else
+		ft_draw_burning(f);
 	return (0);
 }
 
@@ -47,7 +49,15 @@ int		ft_mouse_handler(int button, int x, int y, t_fractol *f)
 	}
 	if (!ft_strncmp(f->name, "mandelbrot", 10))
 		ft_draw_mandelbrot(f);
-	else
+	else if (!ft_strncmp(f->name, "julia", 6))
 		ft_draw_julia(f);
+	else
+		ft_draw_burning(f);
+	return (0);
+}
+
+int		ft_cross(t_fractol *f)
+{
+	ft_cleanup_and_free(f);
 	return (0);
 }

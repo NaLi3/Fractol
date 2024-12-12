@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:57:57 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/12 20:41:01 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/12 23:02:09 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_fractol
 	double	zoom_x;
 	double	zoom_y;
 
-	char	*buf;
+	int		*buf;
 	int		x;
 	int		y;
 	int		color;
@@ -60,7 +60,6 @@ char		*ft_str_to_lower(char *str);
 int			ft_skip_whitespace(char *str, int *sign);
 int			ft_color_mngmnt(t_fractol *f, u_int64_t clr_int, u_int64_t clr_ext);
 
-
 // ft_init.c
 void		ft_initialize_full(char **argv, t_fractol *f);
 void		ft_init_f(t_fractol *f, double a, double b, int max_i);
@@ -68,7 +67,6 @@ void		ft_init_f(t_fractol *f, double a, double b, int max_i);
 // ft_mandelbrot.c
 int			ft_calculate_mandelbrot(t_fractol *fractol);
 void		ft_draw_mandelbrot(t_fractol *f);
-int			ft_color_mngmnt(t_fractol *f, u_int64_t a, u_int64_t b);
 
 // ft_julia.c
 int			ft_calculate_julia(t_fractol *fractol);
@@ -78,10 +76,16 @@ void		ft_draw_julia(t_fractol *f);
 void		ft_error_checking(int argc, char **argv);
 int			ft_verify_arguments(int argc, char **argv);
 void		ft_cleanup_and_free(t_fractol *f);
-int			ft_choose_fractal(char *str, int argc);
+int			ft_choose_fractal(char *str);
 
 // ft_hooks.c
 int			ft_key_handler(int keycode, t_fractol *f);
 int			ft_mouse_handler(int button, int x, int y, t_fractol *f);
+int			ft_cross(t_fractol *f);
+
+// ft_burning.c
+int			ft_calculate_burning(t_fractol *f);
+void		ft_draw_burning(t_fractol *f);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:19:27 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/12 20:03:49 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/12 22:29:19 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,15 @@ double	ft_atof(char *str)
 
 int	ft_color_mngmnt(t_fractol *f, u_int64_t clr_int, u_int64_t clr_ext)
 {
-	if (clr_int > 0xFFFFFF)
-		clr_int = 0xFFFFFF;
-	if (clr_ext > 0xFFFFFF)
-		clr_ext = 0xFFFFFF;
-	if (f->i == f -> max_it)
+
+	if (f->i == f->max_it)
 		f->color = clr_int;
 	else
-		f->color = f->i * clr_ext;
+		f->color = clr_ext * f->i;
+
 	return (f->color);
 }
+
 
 int	ft_skip_whitespace(char *str, int *sign)
 {
