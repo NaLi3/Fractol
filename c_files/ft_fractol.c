@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:03:33 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/12 19:58:03 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/12 20:26:19 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,13 @@ int	main(int argc, char **argv)
 	ft_error_checking(argc, argv);
 	f = (t_fractol *)malloc(1 * sizeof(t_fractol));
 	if (!f)
-	{
-		printf("malloc main foire.");
 		return (1);
-	}
 	ft_initialize_full(argv, f);
-	printf("mine %f\natof %f\n", ft_atof(argv[4]), atof(argv[4]));
 	if (argc == 5)
 		ft_draw_mandelbrot(f);
 	else if (argc == 7)
 		ft_draw_julia(f);
-	mlx_hook(f->win, KeyPress, KeyPressMask, ft_close, f);
+	mlx_hook(f->win, KeyPress, KeyPressMask, ft_key_handler, f);
 	mlx_loop(f->init);
 	return (0);
 }
