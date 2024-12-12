@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:57:57 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/12 02:27:13 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/12 18:55:34 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,42 @@ typedef struct s_fractol
 	double	imag;
 	double	j_real;
 	double	j_imag;
-	double	max_r;
-	double	min_r;
-	double	max_i;
-	double	min_i;
+	double	max_x;
+	double	min_x;
+	double	max_y;
+	double	min_y;
+
+	char	*buf;
 	int		x;
 	int		y;
 	int		color;
 	int		i;
-	int		max_i;
+	int		max_it;
+
+	void	*init;
+
+	void	*win;
+	char	*name;
 	int		width;
 	int		height;
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*buf;
-	char	*name;
+
+	void	*img_ptr;
+	int		bpp;
+	int		size_line;
+	int		endian;
+
 }			t_fractol;
 
 // ft_utils.c
-double		ft_atof(char *str, double intp, double floatp);
-void		*ft_create_img(void *mlx, int width, int height, int *img_data);
-
-// ft_utils.c
-
-double		ft_atof(char *str, double intp, double floatp);
-t_fractol	ft_initialize_f(double a, double b, int max_i);
+double		ft_atof(char *str);
+char		*ft_str_to_lower(char *str);
+int			ft_skip_whitespace(char *str, int *sign);
 int			ft_color_mngmnt(t_fractol *f, u_int64_t clr_int, u_int64_t clr_ext);
+
+
+// ft_init.c
+void		ft_initialize_full(char **argv, t_fractol *f);
+void		ft_init_f(t_fractol *f, double a, double b, int max_i);
 
 // ft_mandelbrot.c
 int			ft_calculate_mandelbrot(t_fractol *fractol);
@@ -61,9 +70,13 @@ int			ft_color_mngmnt(t_fractol *f, u_int64_t a, u_int64_t b);
 int			ft_calculate_julia(t_fractol *fractol);
 void		ft_draw_julia(t_fractol *f);
 
-
 // ft_error_handling.c
-int			ft_argument_handling(int argc, char **argv);
-int			ft_choose_fractal(char *str);
+void		ft_error_checking(int argc, char **argv);
+int			ft_verify_arguments(int argc, char **argv);
+void		ft_cleanup_and_free(t_fractol *f);
+int			ft_choose_fractal(char *str, int argc);
+
+// ft_hooks.c
+int			ft_close(int keycode, t_fractol *f);
 
 #endif

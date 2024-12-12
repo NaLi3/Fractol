@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iswhitespace.c                                  :+:      :+:    :+:   */
+/*   ft_hooks.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/01 03:59:00 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/12 20:04:55 by ilevy            ###   ########.fr       */
+/*   Created: 2024/12/12 18:45:20 by ilevy             #+#    #+#             */
+/*   Updated: 2024/12/12 18:47:21 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../h_files/libft.h"
+#include "../libft/h_files/ft_fractol.h"
 
-int	ft_iswhitespace(int c)
+int		ft_close(int keycode, t_fractol *f)
 {
-	if (c == ' ')
-		return (1);
+	if (keycode == 0xff1b)
+		ft_cleanup_and_free(f);
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:20:39 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/12 02:27:00 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/12 19:42:17 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/h_files/ft_fractol.h"
 
-int		ft_calculate_julia(t_fractol *f)
+int	ft_calculate_julia(t_fractol *f)
 {
 	double		real;
 	double		imag;
@@ -21,12 +21,12 @@ int		ft_calculate_julia(t_fractol *f)
 	real = f->real;
 	imag = f->imag;
 	f -> i = 0;
-	while (real * real + imag * imag <= 4 && (f -> i < f -> max_i))
+	while (real * real + imag * imag <= 4 && (f -> i < f -> max_it))
 	{
-		temp = (real * real - imag * imag) + f->c_real;
-		imag = (2 * real * imag) + f->c_imag;
+		temp = real * real - imag * imag + f->j_real;
+		imag = 2 * real * imag + f->j_imag;
 		real = temp;
-		(f -> i)++;
+		f -> i++;
 	}
 	return (f -> i);
 }
@@ -35,20 +35,19 @@ void	ft_draw_julia(t_fractol *f)
 {
 	double	x_step;
 	double	y_step;
-
-	f -> x = 0;
-	x_step = (f->max_r - f->min_r) / (double)f->width;
-	y_step = (f->max_i - f->min_i) / (double)f->height;
-	while ((f -> x) < mlx -> width)
+	f->x = 0;
+	x_step = (f->max_x - f->min_x) / (double)f->width;
+	y_step = (f->max_y - f->min_y) / (double)f->height;
+	while ((f -> x) < f->width)
 	{
 		f -> y = 0;
-		while (f -> y < mlx -> height)
+		while (f -> y < f->height)
 		{
-			f -> real = f -> min_x + f -> x * x_step;
-			f -> imag = f -> min_y + f -> y * y_step *1.25;
+			f -> real = f -> min_x + f ->x * x_step;
+			f -> imag = f -> min_y + f ->y * y_step;
 			f -> i = ft_calculate_julia(f);
 			f -> color = ft_color_mngmnt(f, 0xAA0000, 0x0000AA);
-			mlx_pixel_put(mlx->init, mlx->win, f -> x, f->y++, f->color);
+			mlx_pixel_put(f->init, f->win, f->x, f->y++, f->color);
 		}
 		f -> x++;
 	}

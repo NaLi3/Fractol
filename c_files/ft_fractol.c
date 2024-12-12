@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:03:33 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/12 02:20:12 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/12 19:58:03 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,55 @@
 
 int	main(int argc, char **argv)
 {
-	t_fractol	*mlx;
+	t_fractol	*f;
 
-	ft_argument_handling(argc, argv);
-	
-
+	ft_error_checking(argc, argv);
+	f = (t_fractol *)malloc(1 * sizeof(t_fractol));
+	if (!f)
+	{
+		printf("malloc main foire.");
+		return (1);
+	}
+	ft_initialize_full(argv, f);
+	printf("mine %f\natof %f\n", ft_atof(argv[4]), atof(argv[4]));
+	if (argc == 5)
+		ft_draw_mandelbrot(f);
+	else if (argc == 7)
+		ft_draw_julia(f);
+	mlx_hook(f->win, KeyPress, KeyPressMask, ft_close, f);
+	mlx_loop(f->init);
+	return (0);
 }
 
-int	ft_zooming(int button, t_fractol *mlx)
+int	ft_zooming(int button, t_fractol *f)
 {
 	double	zoom_factor;
 
 	zoom_factor = 0.9;
 	if (button == 4)
 	{
-		printf("addr of min_x %f\n", mlx->f.min_x);
-		mlx->f.min_x *= zoom_factor;
-		mlx->f.max_x *= zoom_factor;
-		mlx->f.min_y *= zoom_factor;
-		mlx->f.max_y *= zoom_factor;
+		printf("addr of min_x %f\n", f->min_x);
+		f->min_x *= zoom_factor;
+		f->max_x *= zoom_factor;
+		f->min_y *= zoom_factor;
+		f->max_y *= zoom_factor;
 	}
 	else if (button == 5)
 	{
-		mlx->f.min_x /= zoom_factor;
-		mlx->f.max_x /= zoom_factor;
-		mlx->f.min_y /= zoom_factor;
-		mlx->f.max_y /= zoom_factor;
+		f->min_x /= zoom_factor;
+		f->max_x /= zoom_factor;
+		f->min_y /= zoom_factor;
+		f->max_y /= zoom_factor;
 	}
-	if (!strncmp(mlx->name, "mandelbrot", 10))
+	if (!strncmp(f->name, "mandelbrot", 10))
 	{
-		mlx_clear_window(mlx->init, mlx->win);
-		ft_draw_mandelbrot(mlx, &mlx->f);
+		mlx_clear_window(f->init, f->win);
+		ft_draw_mandelbrot(f);
 	}
-	else if (!strncmp(mlx->name, "julia", 6))
-		ft_draw_julia(mlx, &mlx->f);
+	else if (!strncmp(f->name, "julia", 6))
+	{
+		mlx_clear_window(f->init, f->win);
+		ft_draw_julia(f);
+	}
 	return (0);
 }
