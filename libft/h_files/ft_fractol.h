@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:57:57 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/12 20:27:28 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/12 20:41:01 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_fractol
 	double	min_y;
 	double	move_x;
 	double	move_y;
+	double	zoom_x;
+	double	zoom_y;
 
 	char	*buf;
 	int		x;
@@ -80,5 +82,6 @@ int			ft_choose_fractal(char *str, int argc);
 
 // ft_hooks.c
 int			ft_key_handler(int keycode, t_fractol *f);
+int			ft_mouse_handler(int button, int x, int y, t_fractol *f);
 
 #endif
