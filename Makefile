@@ -6,7 +6,7 @@
 #    By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/06 21:37:20 by ilevy             #+#    #+#              #
-#    Updated: 2024/12/09 19:23:48 by ilevy            ###   ########.fr        #
+#    Updated: 2024/12/11 17:20:43 by ilevy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME:= Fractol
 # Compilator
 
 CC:= cc
-CFLAGS:= -Wall -Wextra -Werror
+CFLAGS:= -Wall -Wextra -Werror -g
 
 # Main Directories
 

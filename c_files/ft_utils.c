@@ -6,74 +6,58 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:19:27 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/10 22:01:50 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/12 02:18:36 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/h_files/ft_fractol.h"
 
-double	ft_atof(char *str, double intp, double floatp)
+double	ft_atof(char *str)
 {
-	int		sign;
-	int		div;
-	int		flag;
+	int	sign;
+	int	i;
+	double	n;
+	double	div;
 
-	div = 1;
 	sign = 1;
-	flag = 0;
-	if (*str == '-')
+	n = 0;
+	div = 0.1;
+	i = ft_skipwhitespace(str, &sign);
+	while (str[i] && ft_isdigit(str[i]) && str[i] != '.')
 	{
-		++str;
-		sign = -1;
+
+			n = (n * 10) + (str[i] - '0');
+			i++;
 	}
-	else if (*str == '+')
-		str++;
-	while (*str)
+	if (str[i] == '.')
+		i++;
+	while (str[i] && ft_isdigit(str[i]))
 	{
-		if (ft_isdigit(*str))
-		{
-			if (flag)
-			{
-				floatp = floatp * 10 +(*str - '0');
-				div *= 10;
-			}
-			else
-				intp = intp * 10 + (*str - '0');
-		}
-		else if (*str == '.')
-		{
-			if (flag)
-				break ;
-			else
-				flag = 1;
-		}
-		else
-			break;
-		str++;
+		n = n + ((str[i] - '0') * div);
+		div *= 0.1;
+		i++;
 	}
-	return sign * (intp + floatp/div);
+	return (n * sign)
 }
 
-t_fractol	*ft_initialize_f(double a, double b, int max_i)
-{
-	t_fractol	*f;
 
-	f = (t_fractol *)malloc(1 * sizeof(t_fractol));
-	if (!f)
-		return (NULL);
-	(*f).real = 0;
-	(*f).imag = 0;
-	(*f).c_real = a;
-	(*f).c_imag = b;
-	(*f).max_i = max_i;
-	(*f).x = 0;
-	(*f).y = 0;
-	(*f).i = 0;
-	(*f).color = 0;
-	(*f).max_x = 2;
-	(*f).max_y = 1.2;
-	(*f).min_x = -2;
-	(*f).min_y = -1.2;
+t_fractol	ft_initialize_f(double a, double b, int max_i)
+{
+	t_fractol	f;
+
+	f.real = 0;
+	f.imag = 0;
+	f.c_real = a;
+	f.c_imag = b;
+	f.max_i = max_i;
+	f.x = 0;
+	f.y = 0;
+	f.i = 0;
+	f.color = 0;
+	f.max_x = 2;
+	f.max_y = 1.2;
+	f.min_x = -2;
+	f.min_y = -1.2;
 	return (f);
 }
 
@@ -94,6 +78,7 @@ t_data	*ft_initialize_data(char **argv)
 	mlx->bpp = 0;
 	mlx->size_line = 0;
 	mlx->data_addr = NULL;
+	printf("Height %d\n", mlx->height);
 	return (mlx);
 }
 
@@ -108,4 +93,21 @@ int	ft_color_mngmnt(t_fractol *f, u_int64_t clr_int, u_int64_t clr_ext)
 	else
 		f->color = f->i * clr_ext;
 	return (f->color);
+}
+
+int	ft_skip_whitespace(char *str, int *sign)
+{
+	int		i;
+
+	i = 0;
+	while (ft_iswhitespace(str[i]))
+		i++;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
+	{
+		i++;
+		*sign = -1;
+	}
+	return (i);
 }

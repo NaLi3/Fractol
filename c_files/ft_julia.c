@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:20:39 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/09 23:00:13 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/12 02:27:00 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ int		ft_calculate_julia(t_fractol *f)
 	return (f -> i);
 }
 
-void	ft_draw_julia(t_data *mlx, t_fractol *f)
+void	ft_draw_julia(t_fractol *f)
 {
 	double	x_step;
 	double	y_step;
 
 	f -> x = 0;
-	x_step = (f->max_x - f->min_x) / (double)mlx->width;
-	y_step = (f->max_y - f->min_y) / (double)mlx->height;
+	x_step = (f->max_r - f->min_r) / (double)f->width;
+	y_step = (f->max_i - f->min_i) / (double)f->height;
 	while ((f -> x) < mlx -> width)
 	{
 		f -> y = 0;
