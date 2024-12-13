@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:20:39 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/13 16:43:53 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/13 17:06:56 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_draw_julia(t_fractol *f)
 			f->real = f->min_x + f ->x * x_step + f->move_x;
 			f->imag = f->min_y + f ->y * y_step + f->move_y;
 			f->i = ft_calculate_julia(f);
-			f->color = ft_color_mngmnt(f, 0xFF0000, 0x0000FF);
+			f->color = ft_color_mngmnt(f, 0xAA4A44, 0x6495ED);
 			f->buf[f->y * f->width + f->x] = f->color;
 			f->y++;
 		}
