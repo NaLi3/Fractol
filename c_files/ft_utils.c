@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:19:27 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/13 16:28:52 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/13 16:45:34 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ double	ft_atof(char *str)
 	if (str[i] == '.')
 	{
 		i++;
-		while(str[i] && ft_isdigit(str[i]))
+		while (str[i] && ft_isdigit(str[i]))
 		{
 			n = n + ((str[i] - '0') * div);
 			div /= 10;
@@ -43,7 +43,6 @@ double	ft_atof(char *str)
 
 int	ft_color_mngmnt(t_fractol *f, u_int64_t clr_int, u_int64_t clr_ext)
 {
-
 	if (f->i == f->max_it)
 		f->color = clr_int;
 	else
@@ -54,7 +53,6 @@ int	ft_color_mngmnt(t_fractol *f, u_int64_t clr_int, u_int64_t clr_ext)
 	}
 	return (f->color);
 }
-
 
 int	ft_skip_whitespace(char *str, int *sign)
 {

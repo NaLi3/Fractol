@@ -6,13 +6,13 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 18:45:20 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/13 16:26:48 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/13 16:43:29 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/h_files/ft_fractol.h"
 
-int		ft_key_handler(int keycode, t_fractol *f)
+int	ft_key_handler(int keycode, t_fractol *f)
 {
 	if (keycode == XK_Escape)
 		ft_cleanup_and_free(f);
@@ -37,27 +37,17 @@ int		ft_key_handler(int keycode, t_fractol *f)
 	return (0);
 }
 
-int		ft_mouse_handler(int button, int x, int y, t_fractol *f)
+int	ft_mouse_handler(int button, int x, int y, t_fractol *f)
 {
-	double	mouseRe;
-	double	mouseIm;
+	double	mousere;
+	double	mouseim;
 
-	mouseRe = (double)x / (f->width / (f->max_x - f->min_x)) + f->min_x;
-	mouseIm = (double)y / (f->height / (f->max_y - f->min_y)) + f->min_y;
+	mousere = (double)x / (f->width / (f->max_x - f->min_x)) + f->min_x;
+	mouseim = (double)y / (f->height / (f->max_y - f->min_y)) + f->min_y;
 	if (button == Button4)
-	{
-		f->min_x = interpolate(mouseRe, f->min_x, 0.9);
-		f->max_x = interpolate(mouseRe, f->max_x, 0.9);
-		f->min_y = interpolate(mouseIm, f->min_y, 0.9);
-		f->max_y = interpolate(mouseIm, f->max_y, 0.9);
-	}
+		interpolate(f, mousere, mouseim, 0.9);
 	else if (button == Button5)
-	{
-		f->min_x = interpolate(mouseRe, f->min_x, 1.1);
-		f->max_x = interpolate(mouseRe, f->max_x, 1.1);
-		f->min_y = interpolate(mouseIm, f->min_y, 1.1);
-		f->max_y = interpolate(mouseIm, f->max_y, 1.1);
-	}
+		interpolate(f, mousere, mouseim, 1.1);
 	mlx_clear_window(f->init, f->win);
 	if (!ft_strncmp(f->name, "mandelbrot", 10))
 		ft_draw_mandelbrot(f);
@@ -68,13 +58,16 @@ int		ft_mouse_handler(int button, int x, int y, t_fractol *f)
 	return (0);
 }
 
-int		ft_cross(t_fractol *f)
+int	ft_cross(t_fractol *f)
 {
 	ft_cleanup_and_free(f);
 	return (0);
 }
 
-double	interpolate(double start, double end, double interpolation)
+void	interpolate(t_fractol *f, double mousere, double mouseim, double i)
 {
-	return (start + ((end - start) * interpolation));
+	f->min_x = mousere + ((f->min_x - mousere) * i);
+	f->max_x = mousere + ((f->max_x - mousere) * i);
+	f->min_y = mouseim + ((f->min_y - mouseim) * i);
+	f->max_y = mouseim + ((f->max_y - mouseim) * i);
 }

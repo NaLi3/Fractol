@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:57:57 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/13 16:20:59 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/13 16:47:55 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ typedef struct s_fractol
 
 	void	*img_ptr;
 	int		bpp;
-	int		size_line;
-	int		endian;
+	int		s_l;
+	int		e;
 
 }			t_fractol;
 
@@ -80,12 +80,10 @@ int			ft_choose_fractal(char *str);
 int			ft_key_handler(int keycode, t_fractol *f);
 int			ft_mouse_handler(int button, int x, int y, t_fractol *f);
 int			ft_cross(t_fractol *f);
-double		interpolate(double start, double end, double interpolation);
-
+void		interpolate(t_fractol *f, double mousere, double mouseim, double i);
 
 // ft_burning.c
 int			ft_calculate_burning(t_fractol *f);
 void		ft_draw_burning(t_fractol *f);
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:03:33 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/12 23:04:17 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/13 16:47:06 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ int	main(int argc, char **argv)
 	t_fractol	*f;
 
 	ft_error_checking(argc, argv);
+	if (!ft_choose_fractal(argv[1]))
+	{
+		ft_putendl_fd("Incorrect name or argument count, fractal names:", 2);
+		ft_putendl_fd("Mandelbrot and Ship (4 args); Julia (6 args)", 2);
+		exit(1);
+	}
 	f = (t_fractol *)malloc(1 * sizeof(t_fractol));
 	if (!f)
 		return (1);

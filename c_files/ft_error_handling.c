@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:42:44 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/13 11:25:46 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/13 16:47:00 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,12 @@ void	ft_error_checking(int argc, char **argv)
 	}
 	else if (ft_verify_arguments(argc, argv) == 2)
 	{
-		ft_putendl_fd("Invalid count: Ship and Mandelbrot take in 4 arguments.", 2);
+		ft_putendl_fd("Invalid count: Ship and Mandelbrot take 4 args.", 2);
 		exit(1);
 	}
 	else if (ft_verify_arguments(argc, argv) == 3)
 	{
 		ft_putendl_fd("Invalid count: Julia takes in 6 arguments", 2);
-		exit(1);
-	}
-	if (!ft_choose_fractal(argv[1]))
-	{
-		ft_putendl_fd("Incorrect name or argument count: Available fractals are:", 2);
-		ft_putendl_fd("Mandelbrot and Ship(4 args), Julia (6 args)", 2);
 		exit(1);
 	}
 }
