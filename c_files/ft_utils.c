@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 13:19:27 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/12 22:29:19 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/13 16:28:52 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ int	ft_color_mngmnt(t_fractol *f, u_int64_t clr_int, u_int64_t clr_ext)
 	if (f->i == f->max_it)
 		f->color = clr_int;
 	else
+	{
 		f->color = clr_ext * f->i;
-
+		if (f->color == 0xFFFFFF)
+			f->color = f->color >> 16;
+	}
 	return (f->color);
 }
 

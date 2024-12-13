@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 02:27:45 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/12 23:12:17 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/13 16:23:37 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,4 @@ void	ft_init_f(t_fractol *f, double a, double b, int max_i)
 	f->min_y = -1.2;
 	f->move_x = 0;
 	f->move_y = 0;
-	f->zoom_x = 1;
-	f->zoom_y = 1;
 }

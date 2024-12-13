@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:20:39 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/13 11:48:40 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/13 16:27:32 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	ft_draw_julia(t_fractol *f)
 	double	y_step;
 
 	f->x = 0;
-	x_step = ((f->max_x - f->min_x) / (double)f->width) * f->zoom_x;
-	y_step = ((f->max_y - f->min_y) / (double)f->height) * f->zoom_y;
+	x_step = ((f->max_x - f->min_x) / (double)f->width);
+	y_step = ((f->max_y - f->min_y) / (double)f->height);
 	while ((f->x) < f->width)
 	{
 		f->y = 0;
@@ -53,7 +53,7 @@ void	ft_draw_julia(t_fractol *f)
 			f->real = f->min_x + f ->x * x_step + f->move_x;
 			f->imag = f->min_y + f ->y * y_step  + f->move_y;
 			f->i = ft_calculate_julia(f);
-			f->color = ft_color_mngmnt(f, 0x000000, 0x50C878);
+			f->color = ft_color_mngmnt(f, 0xFF0000, 0x0000FF);
 			f->buf[f->y * f->width + f->x] = f->color;
 			f->y++;
 		}

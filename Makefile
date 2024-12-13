@@ -6,7 +6,7 @@
 #    By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/06 21:37:20 by ilevy             #+#    #+#              #
-#    Updated: 2024/12/12 23:03:14 by ilevy            ###   ########.fr        #
+#    Updated: 2024/12/13 16:30:39 by ilevy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME:= Fractol
 # Compilator
 
 CC:= cc
-CFLAGS:= -Wall -Wextra -Werror -g
+CFLAGS:= -Wall -Wextra -Werror -g -o3
 
 # Main Directories
 
@@ -62,7 +62,7 @@ $(NAME):	$(OBJ)
 	@echo "Compiled fractol!"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c | objdir_mk
-	@$(CC) $(CFLAGS) -I $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(INCLUDE) -o3 -c $< -o $@
 	@echo "Compiled the c files into o files!"
 
 clean:

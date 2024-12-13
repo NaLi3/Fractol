@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:47:55 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/13 11:48:08 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/13 16:24:59 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	ft_draw_burning(t_fractol *f)
 	double	y_step;
 
 	f->x = 0;
-	x_step = ((f->max_x - f->min_x) / (double)f->width) * f->zoom_x;
-	y_step = ((f->max_y - 1 - f->min_y) / (double)f->height) * f->zoom_y;
+	x_step = ((f->max_x - f->min_x) / (double)f->width);
+	y_step = ((f->max_y - f->min_y) / (double)f->height);
 	while ((f->x) < f->width)
 	{
 		f->y = 0;
