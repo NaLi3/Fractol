@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 18:45:20 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/12 23:01:37 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/13 11:10:09 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,15 @@ int		ft_mouse_handler(int button, int x, int y, t_fractol *f)
 	{
 		f->zoom_x *= 0.9;
 		f->zoom_y *= 0.9;
+		f->max_it += 5;
 	}
 	else if (button == Button5)
 	{
 		f->zoom_x /= 0.9;
 		f->zoom_y /= 0.9;
+		f->max_it -= 5;
 	}
+	mlx_clear_window(f->init, f->win);
 	if (!ft_strncmp(f->name, "mandelbrot", 10))
 		ft_draw_mandelbrot(f);
 	else if (!ft_strncmp(f->name, "julia", 6))

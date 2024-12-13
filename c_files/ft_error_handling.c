@@ -6,7 +6,7 @@
 /*   By: ilevy <ilevy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:42:44 by ilevy             #+#    #+#             */
-/*   Updated: 2024/12/12 23:08:02 by ilevy            ###   ########.fr       */
+/*   Updated: 2024/12/13 11:25:46 by ilevy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	ft_verify_arguments(int argc, char **argv)
 		return (2);
 	if (!ft_strncmp(argv[1], "ship", 5) && argc != 5)
 		return (2);
-	if (!ft_strncmp(argv[1], "julia", 6) && argc == 7)
+	if (!ft_strncmp(argv[1], "julia", 6) && argc != 7)
 		return (3);
 	return (0);
 }
